@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title="Address Search">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-2 slds-m-left_x-small">
+                <label class="slds-form-element__label" for="originAddress">Origin Address</label>
+                <div class="slds-form-element__control ">
+                    <input type="text" id="originAddress" onchange={handleOriginChange} />
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-m-left_x-small">
+                <label class="slds-form-element__label" for="destinationAddress">Destination Address</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="destinationAddress" onchange={handleDestinationChange} />
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-m-left_x-small">
+                <lightning-radio-group label="Transportation Mode" options={transportationModes} value={selectedTransportationMode} onchange={handleTransportationModeChange}></lightning-radio-group>
+            </div>
+        </div>
+        <div class="slds-m-top_small">
+        <lightning-button variant="brand" label="Get Directions" onclick={handleClick} class="slds-m-left_x-small slds-m-top_x-medium"></lightning-button>
+    </div>
+
+    <div class="slds-m-top_medium">
+        <template if:true={distanceAndTime}>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-3">
+                    <div><b>Distance:</b> {distanceAndTime.distanceText}</div>
+                    <div><b>Travel Time:</b> {distanceAndTime.durationText}</div>
+                </div>
+                <!--<div class="slds-col slds-size_1-of-3">
+                    <div><b>Transportation Mode:</b> {distanceAndTime.transportationMode}</div>
+                    <div><b>Rate Per Mile:</b> ${distanceAndTime.ratePerMile}</div>
+                </div>-->
+                <div class="slds-col slds-size_1-of-3">
+                    <div><b>Cost of Travel:</b> ${distanceAndTime.cost}</div>
+                </div>
+            </div>
+        </template>
+    </div>
+
+    </lightning-card>
+</template>
